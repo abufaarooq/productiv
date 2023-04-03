@@ -1,0 +1,29 @@
+.location-form 
+{
+  width: 100%;
+  margin-top: -5px;
+}
+.firtheading
+{
+font-size: x-large;
+font-style: italic;
+padding: 0;
+}
+.secondheading
+{
+  font-size: small;
+  font-style: italic;
+  padding: 1;
+}
+.thirdheading
+{
+  font-size: small;
+  font-style: italic;
+
+}
+.fourthheading
+{
+  font-size: small;
+  font-style: italic;
+  padding: 0;
+}
