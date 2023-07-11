@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 function UpdateForm () {
-
     const navigate = useNavigate();
     const validate = values => {
         const errors = {}
@@ -25,7 +24,6 @@ function UpdateForm () {
     }
     const formik = useFormik({
         initialValues: {
-
             userName: '',
             targetDate: '',
             isDone: ''
@@ -34,11 +32,14 @@ function UpdateForm () {
         onSubmit: values =>
             axios ({
                 method: "PUT",
-                url: "http://localhost:8080/users/Admin/items/0",
-                data: values
+                url: 'http://localhost:8080/users/Admin/items/5', // This server has a 0 at the end and it needs to be fixed completely, PUT and PATCH methods are not working properly.
+                data: values,
+                headers: {
+                    Authorization: 'Basic ' + window.btoa('user' + ':' + '1234')
+                  }
             }).then(response => {
                 console.log(response);
-                // navigate('/Welcome')
+                navigate('/welcome')
             }).catch(err => {console.log(err)})
     })
     return (
@@ -63,8 +64,8 @@ function UpdateForm () {
                 {formik.touched.status && formik.errors.status ? <div>{formik.errors.status}</div> : null}
                 </div>
                 
-                <button className='add-form-button'>Submit</button>
-                <button type='cancel' className='cancel-form-button' onClick={() => navigate('/Welcome')}>Cancel</button>
+                <button type = 'submit' className='add-form-button'>Submit</button>
+                <button type='cancel' className='cancel-form-button' onClick={() => navigate('/welcome')}>Cancel</button>
 
             </form>
         </div>

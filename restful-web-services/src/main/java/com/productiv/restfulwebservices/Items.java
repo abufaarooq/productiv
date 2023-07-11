@@ -2,8 +2,18 @@ package com.productiv.restfulwebservices;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+
+@Entity
 public class Items {
+	
+	@Id
+	@GeneratedValue
 	private long id;
+	
 	private String description;
 	private String completionDate;
 	private String isDone;

@@ -27,13 +27,21 @@ function Welcome () {
     const Login = (e) => {
         e.preventDefault();
         auth.login(userName)
-        if (userName === 'Admin' && passWord === '1234') {
+        if (userName === 'user' && passWord === '1234') {
             setIsLoginSuccessful(true);
             setInvalidCreds(false);
             Credentials(isLoginSuccessful);
-            navigate('Welcome', {replace: true })
-            axios.get(`http://localhost:8080/users/Admin/items`).then(response => console.log(response.data))
-            .catch(error => setIsLoginSuccessful(false)); // Fix this for an error pafe backend and not condtionals, 404 or 500 error via axious.
+            navigate('welcome', {replace: true })
+        //     let username = 'user';
+        //     let password = '1234';
+        //     let basicAuthHeader = 'Basic ' + window.btoa(username + ':' + password);
+        //     axios.get(`http://localhost:8080/users/Admin/items`, {
+        //         headers: {
+        //             Authorization : basicAuthHeader
+        //     }
+        // }
+        //     ).then(response => console.log(response.data))
+        //     .catch(error => setIsLoginSuccessful(false)); // Fix this for an error pafe backend and not condtionals, 404 or 500 error via axious.
         }
         else {
             setInvalidCreds(true);
@@ -57,7 +65,7 @@ function Welcome () {
         }
     }
     return  (
-    <div>
+<div>
         <h1 className = 'firtheading'>pro·duc·tiv</h1>
         <h1 className= "secondheading">/prəˈdəktiv/</h1>
         <h1 className= "thirdheading">adjective</h1>

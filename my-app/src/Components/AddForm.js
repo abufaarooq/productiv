@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import './Welcome.css'
 import './AddForm.css';
 import axios from 'axios';
@@ -9,6 +8,13 @@ import { useNavigate } from 'react-router';
 function AddForm () {
 
     const navigate = useNavigate();
+
+
+    const authorizationHeader = {
+                    // username: 'user',
+                    // password: '1234',
+                    basicAuthHeader: 'Basic ' + window.btoa('user' + ':' + '1234')
+    }
 
     const validate = values => {
         const errors = {}
@@ -35,10 +41,13 @@ function AddForm () {
             axios ({
                 method: "POST",
                 url: "http://localhost:8080/users/Admin/items",
-                data: values
+                data: values,
+                headers: {
+                  Authorization: 'Basic ' + window.btoa('user' + ':' + '1234')
+                }
             }).then(response => {
                 console.log(response);
-                // navigate('/Welcome')
+                navigate('/welcome')
             }).catch(err => {console.log(err)})
     })
 
@@ -60,11 +69,14 @@ function AddForm () {
                 </div>
                 <div>
                 <label htmlFor='isDone'> Status </label>
-                <input className='input-fields' onChange={formik.handleChange} value = {formik.values.isDone} onBlur = {formik.handleBlur} type='text' id='isDone' name = 'isDone'/>
+                <select className='input-fields' onChange={formik.handleChange} value = {formik.values.isDone} onBlur = {formik.handleBlur} type='text' id='isDone' name = 'isDone'>
+                <option value="complete">Complete</option>
+                <option value="incomplete">Incomplete</option>
+                </select> // Add: "Entry successfully added" as a pop-up/alert in JS. On submit.
                 {formik.touched.isDone && formik.errors.isDone ? <div>{formik.errors.isDone}</div> : null}
                 </div>
                 <button type='submit' className='add-form-button'>Submit</button>
-                <button type='cancel' className='cancel-form-button' onClick={() => navigate('/Welcome')}>Cancel</button>
+                <button type='cancel' className='cancel-form-button' onClick={() => navigate('/welcome')}>Cancel</button>
             </form>
         </div>
     )

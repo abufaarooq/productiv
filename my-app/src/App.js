@@ -19,10 +19,10 @@ function App() {
       <AuthProvider>
       <Routes>
       <Route path='/' exact element={<Welcome/>}/>
-      <Route path='/Welcome' element={<RequireAuth><Logout/></RequireAuth>}/>
-      <Route path='/Registration' element={<RequireAuth><Registration/></RequireAuth>}/>
-      <Route path='/Welcome/Add' element={<RequireAuth><AddForm/></RequireAuth>}/>
-      <Route path='/Welcome/Update' element={<RequireAuth><UpdateForm/></RequireAuth>}/>
+      <Route path='/welcome' element={<RequireAuth><Logout/></RequireAuth>}/>
+      <Route path='/registration' element={<RequireAuth><Registration/></RequireAuth>}/>
+      <Route path='/welcome/add' element={<RequireAuth><AddForm/></RequireAuth>}/>
+      <Route path='/welcome/update' element={<RequireAuth><UpdateForm/></RequireAuth>}/>
       </Routes>
       </AuthProvider>
     </div>

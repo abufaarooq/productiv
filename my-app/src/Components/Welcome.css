@@ -1,29 +1,59 @@
 .location-form 
 {
-  width: 100%;
+  width: 50%;
   margin-top: -5px;
 }
 .firtheading
 {
 font-size: x-large;
 font-style: italic;
-padding: 0;
+padding-bottom: 3%;
 }
 .secondheading
 {
   font-size: small;
   font-style: italic;
-  padding: 1;
+  padding: 10px;
 }
 .thirdheading
 {
   font-size: small;
   font-style: italic;
+  padding: 10px;
 
 }
 .fourthheading
 {
   font-size: small;
   font-style: italic;
-  padding: 0;
+  padding: 10px;
+}
+.button
+{
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  padding-left: 10;
+  margin-top: 3%;
+  margin-bottom: 5%;
+  border-radius: 50px;
+  background-color: white;
+  margin-right: 5px;
 }
