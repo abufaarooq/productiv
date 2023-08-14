@@ -1,5 +1,5 @@
 import React, {  useEffect, useState } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import './Logout.css';
 import axios from "axios";
 import { useAuth } from "./auth";
@@ -39,10 +39,17 @@ function Logout () {
        .catch(error => {console.log(error.data)})
         getData();
    }
-   const searchFeature = (e) => {
-    const value = e.target.value;
-     setQuery(value)
-     console.log(query);
+   const searchFeature = (id) => {
+    let username = 'user';
+        let password = '1234';
+        let basicAuthHeader = 'Basic ' + window.btoa(username + ':' + password);
+        axios.get(`http://localhost:8080/users/Admin/items/${id}`, {
+        headers: {
+            Authorization : basicAuthHeader
+    }
+        }).then(response => setQuery(response.id))
+        .catch(error => {console.log(error.data)})
+        console.log(query);
    }
     return (
         <div>
@@ -58,7 +65,7 @@ function Logout () {
         </div>
         <h1>Welcome!</h1>
         <button className="add-button" onClick={() => navigate('add')}>Add</button>
-        <input type="text" placeholder="  Search.." onChange= {searchFeature}></input>
+        <input type="text" placeholder="  Search..." onChange= {searchFeature}></input>
         </div>
             <table className="list-of-itmes">
                 <tr>
@@ -78,7 +85,7 @@ function Logout () {
                  <td>{response.description}</td>
                  <td>{response.completionDate}</td>
                  <td>{response.isDone}</td>
-                 <td><button className="update-button" onClick={() => navigate('update')}>Update</button></td>
+                 <td><button className="update-button" onClick={() => navigate('update', {state: response.id})}>Update</button></td>
                  <td><button className="delete-button" onClick={() => deleteRequest(response.userName, response.id)}>Delete</button></td>
                  </tr>
                  ))

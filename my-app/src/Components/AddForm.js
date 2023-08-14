@@ -9,12 +9,7 @@ function AddForm () {
 
     const navigate = useNavigate();
 
-
-    const authorizationHeader = {
-                    // username: 'user',
-                    // password: '1234',
-                    basicAuthHeader: 'Basic ' + window.btoa('user' + ':' + '1234')
-    }
+   
 
     const validate = values => {
         const errors = {}
@@ -23,7 +18,7 @@ function AddForm () {
             errors.description = 'This field is required'
         }
         if (!values.completionDate) {
-            errors.completionDate = 'This field is required'
+            errors.completionDate = 'This field is required. Please be sure to provide a date as MM/DD/YYYY.'
         }
         if (!values.isDone) {
             errors.isDone = 'This field is required'

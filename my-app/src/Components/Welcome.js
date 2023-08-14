@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import './Welcome.css';
-import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./auth";
 
@@ -32,16 +31,7 @@ function Welcome () {
             setInvalidCreds(false);
             Credentials(isLoginSuccessful);
             navigate('welcome', {replace: true })
-        //     let username = 'user';
-        //     let password = '1234';
-        //     let basicAuthHeader = 'Basic ' + window.btoa(username + ':' + password);
-        //     axios.get(`http://localhost:8080/users/Admin/items`, {
-        //         headers: {
-        //             Authorization : basicAuthHeader
-        //     }
-        // }
-        //     ).then(response => console.log(response.data))
-        //     .catch(error => setIsLoginSuccessful(false)); // Fix this for an error pafe backend and not condtionals, 404 or 500 error via axious.
+
         }
         else {
             setInvalidCreds(true);

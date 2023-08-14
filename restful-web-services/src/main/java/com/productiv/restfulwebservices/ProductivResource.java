@@ -21,39 +21,44 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class ProductivResource {
 	
 	@Autowired
-	private ListOfStaticItems itemsService;
+	private ProductivService service;
 	
 	@GetMapping("/users/{userName}/items")
-	public  List<Items> getAllItems(@PathVariable String userName)
+	public  List<Item> getAllItems(@PathVariable String userName)
 	{
-		return itemsService.findAll();
+		return service.findAll();
 	}
+
+	@GetMapping("/users/{userName}/items/{id}")
+	public  Item getItem(@PathVariable String userName, @PathVariable long id)
+	{
+		return service.findById(id);
+	}
+
 	@DeleteMapping("/users/{userName}/items/{id}")
 	public ResponseEntity<Void> deleteItem (@PathVariable String userName, @PathVariable long id) {
-		Items item = itemsService.deleteId(id);
-		if(item != null) 
-		{
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.notFound().build();
+		
+		service.deleteId(id);
+		
+		return ResponseEntity.noContent().build();
 	}
+
 	@PostMapping("/users/{userName}/items")
-	public ResponseEntity<Void> postItems (@PathVariable String userName, @RequestBody Items item) {
+	public ResponseEntity<Void> postItems (@PathVariable String userName, @RequestBody Item item) {
 	
-	Items postItem = itemsService.updateId(item);	
+	Item postItem = service.create(item);	
 	
 	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(postItem.getId()).toUri();
-	
+
 	return ResponseEntity.created(uri).build();
 	
 	}
 	@PutMapping("/users/{userName}/items/{id}")
-	public ResponseEntity<Items> updateItems (@PathVariable String userName, @PathVariable long id, @RequestBody Items item) {
+	public ResponseEntity<Item> updateItems (@PathVariable String userName, @PathVariable long id, @RequestBody Item item) {
 	
-	Items updatedItem = itemsService.updateId(item);
+	service.update(item);
 		
-	return new ResponseEntity <Items> (item, HttpStatus.OK);
+	return new ResponseEntity <Item> (item, HttpStatus.OK);
 	
 	}
-
 }

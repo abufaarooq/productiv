@@ -38,6 +38,7 @@ public class SpringSecurityBasicAuthConfig {
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	        // ...
 	        http.cors().and().csrf().disable();
+			http.headers().frameOptions().disable();
 	        return http.build();
 	    }
 	   
@@ -45,8 +46,7 @@ public class SpringSecurityBasicAuthConfig {
 		   
 		    http.authorizeHttpRequests().requestMatchers("/h2-console/**").permitAll()
 		        .and().csrf().ignoringRequestMatchers("/h2-console/**")
-		        .and().headers().frameOptions().sameOrigin();
-		// ... your other configuration
+		        .and().headers().frameOptions().sameOrigin();	
 		}
 
 
